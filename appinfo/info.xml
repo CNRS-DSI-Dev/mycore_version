@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<info>
+	<id>mycore_version</id>
+	<name>My CoRe Version</name>
+	<licence>AGPL</licence>
+	<author>Frank Karlitschek, Bjoern Schiessle, Patrick Paysant</author>
+	<requiremin>7</requiremin>
+	<shipped>false</shipped>
+	<description>
+Fork of owncloud 7 app "Version" that allows maintaining older versions of files that are changed.
+This fork is absolutely not validated by original authors. Its answers to a specific need by CNRS.
+This app allows to restrain which users groups are allowed to use "versions" of their files.
+	</description>
+	<types>
+		<filesystem/>
+	</types>
+</info>
