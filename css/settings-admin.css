@@ -36,7 +36,7 @@ display: none !important;
     width: 15em;
 }
 
-#mycore_version #groupList {
+#mycoreVersionGroupList {
     margin-left: 18em;
     border: 1px solid #ddd;
     padding: 3px;
@@ -55,10 +55,9 @@ display: none !important;
     cursor: pointer;
 }
 
-/*div#mycore_version.section div#mycore_versionGroups.indent h3 div#groupList.groupList_saved*/
-#mycore_version #groupList.groupList_changed {
+#mycoreVersionGroupList.groupList_changed {
   background: lightYellow;
 }
-#mycore_version #groupList.groupList_saved {
+#mycoreVersionGroupList.groupList_saved {
   background: lightGreen;
 }
