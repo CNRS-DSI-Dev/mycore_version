@@ -18,5 +18,5 @@ If you want to be informed about this ownCloud project at CNRS, please contact d
 |:---------------------|:-----------------------------------------|
 | **Original Authors:**| Frank Karlitschek, Bjoern Schiessle
 | **Author:**          | Patrick Paysant (<ppaysant@linagora.com>)
-| **Copyright:**       | Copyright (c) 2014 CNRS DSI
+| **Copyright:**       | Copyright (c) 2015 CNRS DSI
 | **License:**         | AGPL v3, see the COPYING file.
