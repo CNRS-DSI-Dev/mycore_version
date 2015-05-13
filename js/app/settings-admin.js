@@ -89,7 +89,7 @@ mycoreVersionApp.controller('mycoreVersionController', ['$scope', 'groupsService
     };
 
     $scope.updateGroupList = function() {
-        var groupListElt = $('#groupList');
+        var groupListElt = $('#mycoreVersionGroupList');
 
         groupListElt.addClass("groupList_changed");
         OC.AppConfig.postCall('setValue',{app:'mycore_version',key:'version_groupids_list',value:angular.toJson($scope.groupList)}, function() {

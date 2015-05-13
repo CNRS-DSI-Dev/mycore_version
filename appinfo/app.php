@@ -5,12 +5,19 @@ $userGroups = OC_Group::getUserGroups(\OCP\User::getUser());
 $mycoreGroups = array();
 $appConfig = \OC::$server->getAppConfig();
 $configGroups = json_decode($appConfig->getValue('mycore_version', 'version_groupids_list', ''));
-foreach($configGroups as $group) {
-    array_push($mycoreGroups, $group->id);
+if (is_array($configGroups)) {
+    foreach($configGroups as $group) {
+        array_push($mycoreGroups, $group->id);
+    }
 }
 
+$isAdminUser = false;
+if( OC_User::isAdminUser(OC_User::getUser())) {
+    $isAdminUser = true;
+}
 $intersect = array_intersect($userGroups, $mycoreGroups);
-if (empty($intersect)) {
+
+if (empty($intersect) and !$isAdminUser) {
     return;
 }
 

@@ -48,7 +48,7 @@
 
         </div>
 
-        <div id="groupList">
+        <div id="mycoreVersionGroupList">
             <span class="groupItem" ng-repeat="group in groupList | orderBy:'name'">
                 <span ng-click="removeGroup(group.id)" title="<?php p($l->t('Remove this group'));?>">[X]</span> {{ group.name }}
             </span>
