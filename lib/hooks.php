@@ -10,20 +10,20 @@
  * This class contains all hooks.
  */
 
-namespace OCA\MyCoRe_Version;
+namespace OCA\MyCoRe_Versions;
 
 class Hooks {
 
 	public static function connectHooks() {
 		// Listen to write signals
-		\OCP\Util::connectHook('OC_Filesystem', 'write', 'OCA\MyCoRe_Version\Hooks', 'write_hook');
+		\OCP\Util::connectHook('OC_Filesystem', 'write', 'OCA\MyCoRe_Versions\Hooks', 'write_hook');
 		// Listen to delete and rename signals
-		\OCP\Util::connectHook('OC_Filesystem', 'post_delete', 'OCA\MyCoRe_Version\Hooks', 'remove_hook');
-		\OCP\Util::connectHook('OC_Filesystem', 'delete', 'OCA\MyCoRe_Version\Hooks', 'pre_remove_hook');
-		\OCP\Util::connectHook('OC_Filesystem', 'post_rename', 'OCA\MyCoRe_Version\Hooks', 'rename_hook');
-		\OCP\Util::connectHook('OC_Filesystem', 'post_copy', 'OCA\MyCoRe_Version\Hooks', 'copy_hook');
-		\OCP\Util::connectHook('OC_Filesystem', 'rename', 'OCA\MyCoRe_Version\Hooks', 'pre_renameOrCopy_hook');
-		\OCP\Util::connectHook('OC_Filesystem', 'copy', 'OCA\MyCoRe_Version\Hooks', 'pre_renameOrCopy_hook');
+		\OCP\Util::connectHook('OC_Filesystem', 'post_delete', 'OCA\MyCoRe_Versions\Hooks', 'remove_hook');
+		\OCP\Util::connectHook('OC_Filesystem', 'delete', 'OCA\MyCoRe_Versions\Hooks', 'pre_remove_hook');
+		\OCP\Util::connectHook('OC_Filesystem', 'post_rename', 'OCA\MyCoRe_Versions\Hooks', 'rename_hook');
+		\OCP\Util::connectHook('OC_Filesystem', 'post_copy', 'OCA\MyCoRe_Versions\Hooks', 'copy_hook');
+		\OCP\Util::connectHook('OC_Filesystem', 'rename', 'OCA\MyCoRe_Versions\Hooks', 'pre_renameOrCopy_hook');
+		\OCP\Util::connectHook('OC_Filesystem', 'copy', 'OCA\MyCoRe_Versions\Hooks', 'pre_renameOrCopy_hook');
 	}
 
 	/**
@@ -31,7 +31,7 @@ class Hooks {
 	 */
 	public static function write_hook( $params ) {
 
-		if (\OCP\App::isEnabled('mycore_version')) {
+		if (\OCP\App::isEnabled('mycore_versions')) {
 			$path = $params[\OC\Files\Filesystem::signal_param_path];
 			if($path<>'') {
 				Storage::store($path);
@@ -49,7 +49,7 @@ class Hooks {
 	 */
 	public static function remove_hook($params) {
 
-		if (\OCP\App::isEnabled('mycore_version')) {
+		if (\OCP\App::isEnabled('mycore_versions')) {
 			$path = $params[\OC\Files\Filesystem::signal_param_path];
 			if($path<>'') {
 				Storage::delete($path);
@@ -77,7 +77,7 @@ class Hooks {
 	 */
 	public static function rename_hook($params) {
 
-		if (\OCP\App::isEnabled('mycore_version')) {
+		if (\OCP\App::isEnabled('mycore_versions')) {
 			$oldpath = $params['oldpath'];
 			$newpath = $params['newpath'];
 			if($oldpath<>'' && $newpath<>'') {
@@ -95,7 +95,7 @@ class Hooks {
 	 */
 	public static function copy_hook($params) {
 
-		if (\OCP\App::isEnabled('mycore_version')) {
+		if (\OCP\App::isEnabled('mycore_versions')) {
 			$oldpath = $params['oldpath'];
 			$newpath = $params['newpath'];
 			if($oldpath<>'' && $newpath<>'') {
@@ -113,7 +113,7 @@ class Hooks {
 	 *
 	 */
 	public static function pre_renameOrCopy_hook($params) {
-		if (\OCP\App::isEnabled('mycore_version')) {
+		if (\OCP\App::isEnabled('mycore_versions')) {
 
 			// if we rename a movable mount point, then the versions don't have
 			// to be renamed

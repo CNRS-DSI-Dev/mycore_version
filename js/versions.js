@@ -45,7 +45,7 @@ $(document).ready(function(){
 				if(createDropDown === true) {
 					createVersionsDropdown(filename, file, context.fileList);
 				}
-			}, t('mycore_version', 'Versions')
+			}, t('mycore_versions', 'Versions')
 		);
 	}
 
@@ -61,7 +61,7 @@ function revertFile(file, revision) {
 
 	$.ajax({
 		type: 'GET',
-		url: OC.linkTo('mycore_version', 'ajax/rollbackVersion.php'),
+		url: OC.linkTo('mycore_versions', 'ajax/rollbackVersion.php'),
 		dataType: 'json',
 		data: {file: file, revision: revision},
 		async: false,
@@ -94,7 +94,7 @@ function createVersionsDropdown(filename, files, fileList) {
 	html += '<ul id="found_versions">';
 	html += '</ul>';
 	html += '</div>';
-	html += '<input type="button" value="'+ t('mycore_version', 'More versions...') + '" name="show-more-versions" id="show-more-versions" style="display: none;" />';
+	html += '<input type="button" value="'+ t('mycore_versions', 'More versions...') + '" name="show-more-versions" id="show-more-versions" style="display: none;" />';
 
 	if (filename) {
 		fileEl = fileList.findFileEl(filename);
@@ -116,7 +116,7 @@ function createVersionsDropdown(filename, files, fileList) {
 	function getVersions(start) {
 		$.ajax({
 			type: 'GET',
-			url: OC.filePath('mycore_version', 'ajax', 'getVersions.php'),
+			url: OC.filePath('mycore_versions', 'ajax', 'getVersions.php'),
 			dataType: 'json',
 			data: {source: files, start: start},
 			async: false,
@@ -132,7 +132,7 @@ function createVersionsDropdown(filename, files, fileList) {
 						addVersion(row);
 					});
 				} else {
-					$('<div style="text-align:center;">'+ t('mycore_version', 'No other versions available') + '</div>').appendTo('#dropdown');
+					$('<div style="text-align:center;">'+ t('mycore_versions', 'No other versions available') + '</div>').appendTo('#dropdown');
 				}
 				$('#found_versions').change(function() {
 					var revision = parseInt($(this).val());
@@ -146,7 +146,7 @@ function createVersionsDropdown(filename, files, fileList) {
 		var title = formatDate(revision.version*1000);
 		var name ='<span class="versionDate" title="' + title + '">' + revision.humanReadableTimestamp + '</span>';
 
-		var path = OC.filePath('mycore_version', '', 'download.php');
+		var path = OC.filePath('mycore_versions', '', 'download.php');
 
 		var preview = '<img class="preview" src="'+revision.preview+'"/>';
 
@@ -162,7 +162,7 @@ function createVersionsDropdown(filename, files, fileList) {
 		revert+='<img';
 		revert+=' src="' + OC.imagePath('core', 'actions/history') + '"';
 		revert+=' name="revertVersion"';
-		revert+='/>'+t('mycore_version', 'Restore')+'</span>';
+		revert+='/>'+t('mycore_versions', 'Restore')+'</span>';
 
 		var version=$('<li/>');
 		version.attr('value', revision.version);

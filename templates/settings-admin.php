@@ -1,31 +1,31 @@
 <?php
 
 /**
- * ownCloud - MyCore version
+ * ownCloud - MyCore versions
  *
  * @author Patrick Paysant <ppaysant@linagora.com>
  * @copyright 2014 CNRS DSI
  * @license This file is licensed under the Affero General Public License version 3 or later. See the COPYING file.
  */
 
-\OCP\Util::addStyle('mycore_version', 'settings-admin');
+\OCP\Util::addStyle('mycore_versions', 'settings-admin');
 
-\OCP\Util::addScript('mycore_version', 'lib/angular');
-\OCP\Util::addScript('mycore_version', 'lib/angucomplete-alt');
-\OCP\Util::addScript('mycore_version', 'app/settings-admin');
-\OCP\Util::addScript('mycore_version', 'app/services/mycore_version.services');
+\OCP\Util::addScript('mycore_versions', 'lib/angular');
+\OCP\Util::addScript('mycore_versions', 'lib/angucomplete-alt');
+\OCP\Util::addScript('mycore_versions', 'app/settings-admin');
+\OCP\Util::addScript('mycore_versions', 'app/services/mycore_versions.services');
 
 ?>
-<div id="mycore_version" class="section" ng-app="mycoreVersionApp" ng-controller="mycoreVersionController">
-    <h2><?php p($l->t('My CoRe Version')); ?></h2>
+<div id="mycore_versions" class="section" ng-app="mycoreVersionsApp" ng-controller="mycoreVersionsController">
+    <h2><?php p($l->t('My CoRe Versions')); ?></h2>
 
     <p>
-        <input type="checkbox" ng-model="mycoreversionGroupsEnabled"
+        <input type="checkbox" ng-model="mycoreversionsGroupsEnabled"
             ng-true-value="yes" ng-false-value="no" ng-change="storeChoice()">
-        <label for="mycoreversionGroupsEnabled"><?php p($l->t('Allow some groups members to use versionning.'));?></label>
+        <label for="mycoreversionsGroupsEnabled"><?php p($l->t('Allow some groups members to use versionning.'));?></label>
     </p>
 
-    <div id="mycoreversionGroups" class="indent" ng-show="mycoreversionGroupsEnabled" ng-cloak class="ng-cloak">
+    <div id="mycoreversionsGroups" class="indent" ng-show="mycoreversionsGroupsEnabled" ng-cloak class="ng-cloak">
 
         <h3><?php p($l->t('List of groups')); ?><p>
 
@@ -34,7 +34,7 @@
                 placeholder="{{ searchPlaceholder }}"
                 pause="400"
                 selected-object="addGroup"
-                remote-url="{{ mycoreversionGroupsUrl }}"
+                remote-url="{{ mycoreversionsGroupsUrl }}"
                 remote-url-data-field="data.groups"
                 minlength = "1"
                 title-field="name"
@@ -48,7 +48,7 @@
 
         </div>
 
-        <div id="mycoreVersionGroupList">
+        <div id="mycoreVersionsGroupList">
             <span class="groupItem" ng-repeat="group in groupList | orderBy:'name'">
                 <span ng-click="removeGroup(group.id)" title="<?php p($l->t('Remove this group'));?>">[X]</span> {{ group.name }}
             </span>

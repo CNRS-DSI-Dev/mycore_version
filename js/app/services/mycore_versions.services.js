@@ -1,5 +1,5 @@
 /**
- * ownCloud - My Core version
+ * ownCloud - My Core versions
  *
  * @author Patrick Paysant <ppaysant@linagora.com>
  * @copyright 2014 CNRS DSI
@@ -9,10 +9,10 @@
 /**
  * Groups services
  */
-angular.module('mycore_version.services.groups', [])
+angular.module('mycore_versions.services.groups', [])
     .factory('groupsService', ['$http', function($http){
         var doIsGroupsEnabled = function() {
-            return $http.get(OC.generateUrl('/apps/mycore_version/ajax/groups.php?act=is_groups_enabled'));
+            return $http.get(OC.generateUrl('/apps/mycore_versions/ajax/groups.php?act=is_groups_enabled'));
         };
 
         return {

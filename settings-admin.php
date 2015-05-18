@@ -2,6 +2,6 @@
 
 namespace OCA\Documents;
 
-$tmpl = new \OCP\Template('mycore_version', 'settings-admin');
+$tmpl = new \OCP\Template('mycore_versions', 'settings-admin');
 
 return $tmpl->fetchPage();

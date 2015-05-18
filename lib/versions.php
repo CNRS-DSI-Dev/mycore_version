@@ -13,7 +13,7 @@
  * A class to handle the versioning of files.
  */
 
-namespace OCA\MyCoRe_Version;
+namespace OCA\MyCoRe_Versions;
 
 class Storage {
 
@@ -247,7 +247,7 @@ class Storage {
 	 */
 	public static function rollback($file, $revision) {
 
-		if(\OCP\Config::getSystemValue('mycore_version', Storage::DEFAULTENABLED)=='true') {
+		if(\OCP\Config::getSystemValue('mycore_versions', Storage::DEFAULTENABLED)=='true') {
 			list($uid, $filename) = self::getUidAndFilename($file);
 			$users_view = new \OC\Files\View('/'.$uid);
 			$files_view = new \OC\Files\View('/'.\OCP\User::getUser().'/files');
@@ -451,7 +451,7 @@ class Storage {
 						//distance between two version too small, mark to delete
 						$toDelete[$key] = $version['path'] . '.v' . $version['version'];
 						$size += $version['size'];
-						\OCP\Util::writeLog('mycore_version', 'Mark to expire '. $version['path'] .' next version should be ' . $nextVersion . " or smaller. (prevTimestamp: " . $prevTimestamp . "; step: " . $step, \OCP\Util::DEBUG);
+						\OCP\Util::writeLog('mycore_versions', 'Mark to expire '. $version['path'] .' next version should be ' . $nextVersion . " or smaller. (prevTimestamp: " . $prevTimestamp . "; step: " . $step, \OCP\Util::DEBUG);
 					} else {
 						$nextVersion = $version['version'] - $step;
 						$prevTimestamp = $version['version'];
@@ -479,7 +479,7 @@ class Storage {
 	 * Erase a file's versions which exceed the set quota
 	 */
 	private static function expire($filename, $versionsSize = null, $offset = 0) {
-		if(\OCP\Config::getSystemValue('mycore_version', Storage::DEFAULTENABLED)=='true') {
+		if(\OCP\Config::getSystemValue('mycore_versions', Storage::DEFAULTENABLED)=='true') {
 			list($uid, $filename) = self::getUidAndFilename($filename);
 			$versionsFileview = new \OC\Files\View('/'.$uid.'/files_versions');
 
@@ -543,7 +543,7 @@ class Storage {
 				self::deleteVersion($versionsFileview, $path);
 				\OC_Hook::emit('\OCP\Versions', 'delete', array('path' => $path));
 				unset($allVersions[$key]); // update array with the versions we keep
-				\OCP\Util::writeLog('mycore_version', "Expire: " . $path, \OCP\Util::DEBUG);
+				\OCP\Util::writeLog('mycore_versions', "Expire: " . $path, \OCP\Util::DEBUG);
 			}
 
 			// Check if enough space is available after versions are rearranged.
@@ -559,7 +559,7 @@ class Storage {
 				\OC_Hook::emit('\OCP\Versions', 'preDelete', array('path' => $version['path'].'.v'.$version['version']));
 				self::deleteVersion($versionsFileview, $version['path'] . '.v' . $version['version']);
 				\OC_Hook::emit('\OCP\Versions', 'delete', array('path' => $version['path'].'.v'.$version['version']));
-				\OCP\Util::writeLog('mycore_version', 'running out of space! Delete oldest version: ' . $version['path'].'.v'.$version['version'] , \OCP\Util::DEBUG);
+				\OCP\Util::writeLog('mycore_versions', 'running out of space! Delete oldest version: ' . $version['path'].'.v'.$version['version'] , \OCP\Util::DEBUG);
 				$versionsSize -= $version['size'];
 				$availableSpace += $version['size'];
 				next($allVersions);

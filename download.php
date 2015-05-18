@@ -21,13 +21,13 @@
 *
 */
 
-OCP\JSON::checkAppEnabled('mycore_version');
+OCP\JSON::checkAppEnabled('mycore_versions');
 //OCP\JSON::callCheck();
 
 $file = $_GET['file'];
 $revision=(int)$_GET['revision'];
 
-list($uid, $filename) = OCA\MyCoRe_Version\Storage::getUidAndFilename($file);
+list($uid, $filename) = OCA\MyCoRe_Versions\Storage::getUidAndFilename($file);
 
 $versionName = '/'.$uid.'/files_versions/'.$filename.'.v'.$revision;
 

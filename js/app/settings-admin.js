@@ -1,5 +1,5 @@
 /**
- * ownCloud - My CoRe Version
+ * ownCloud - My CoRe Versions
  *
  * @author Patrick Paysant <ppaysant@linagora.com>
  * @copyright 2014 CNRS DSI
@@ -9,20 +9,20 @@
 
 // Needed if this ng-app is not the first one on page
 angular.element(document).ready(function() {
-  angular.bootstrap(document.getElementById('mycore-version'), ['mycoreVersionApp']);
+  angular.bootstrap(document.getElementById('mycore-versions'), ['mycoreVersionsApp']);
 });
 
-var mycoreVersionApp = angular.module('mycoreVersionApp', ['angucomplete-alt', 'mycore_version.services.groups']);
-mycoreVersionApp.config(['$httpProvider', function($httpProvider) {
+var mycoreVersionsApp = angular.module('mycoreVersionsApp', ['angucomplete-alt', 'mycore_versions.services.groups']);
+mycoreVersionsApp.config(['$httpProvider', function($httpProvider) {
     // CSRF protection
     $httpProvider.defaults.headers.common.requesttoken = oc_requesttoken;
 }]);
 
-mycoreVersionApp.controller('mycoreVersionController', ['$scope', 'groupsService', function($scope, groupsService) {
+mycoreVersionsApp.controller('mycoreVersionsController', ['$scope', 'groupsService', function($scope, groupsService) {
 
-    $scope.mycoreversionGroupsUrl = OC.generateUrl('/apps/mycore_version/ajax/groups.php?act=groupList&search=');
-    $scope.searchPlaceholder = t('mycore_version', 'Search group');
-    $scope.mycoreversionGroupsEnabled = 'no';
+    $scope.mycoreversionsGroupsUrl = OC.generateUrl('/apps/mycore_versions/ajax/groups.php?act=groupList&search=');
+    $scope.searchPlaceholder = t('mycore_versions', 'Search group');
+    $scope.mycoreversionsGroupsEnabled = 'no';
 
     // Will contain a list of group objects {'name':'group_name','id':'group_id'}
     $scope.groupList = [];
@@ -33,10 +33,10 @@ mycoreVersionApp.controller('mycoreVersionController', ['$scope', 'groupsService
     $scope.init = function() {
         groupsService.isGroupsEnabled()
             .success(function(data) {
-                $scope.mycoreversionGroupsEnabled = data.data.enabled;
+                $scope.mycoreversionsGroupsEnabled = data.data.enabled;
             });
 
-        OC.AppConfig.getValue('mycore_version', 'version_groupids_list', null, function(data) {
+        OC.AppConfig.getValue('mycore_versions', 'versions_groupids_list', null, function(data) {
             if (data == null) {
                 $scope.groupList = [];
             }
@@ -51,7 +51,7 @@ mycoreVersionApp.controller('mycoreVersionController', ['$scope', 'groupsService
      * Ask for param storage
      */
     $scope.storeChoice = function() {
-        OC.AppConfig.setValue('mycore_version', 'version_groups_enabled', $scope.mycoreversionGroupsEnabled);
+        OC.AppConfig.setValue('mycore_versions', 'versions_groups_enabled', $scope.mycoreversionsGroupsEnabled);
     };
 
     /**
@@ -64,8 +64,8 @@ mycoreVersionApp.controller('mycoreVersionController', ['$scope', 'groupsService
         });
         if (truc.length > 0) {
             OC.dialogs.alert(
-                t('mycore_version', 'This group is already in the list'),
-                t('mycore_version', 'Error creating group')
+                t('mycore_versions', 'This group is already in the list'),
+                t('mycore_versions', 'Error creating group')
             );
             return;
         }
@@ -89,10 +89,10 @@ mycoreVersionApp.controller('mycoreVersionController', ['$scope', 'groupsService
     };
 
     $scope.updateGroupList = function() {
-        var groupListElt = $('#mycoreVersionGroupList');
+        var groupListElt = $('#mycoreVersionsGroupList');
 
         groupListElt.addClass("groupList_changed");
-        OC.AppConfig.postCall('setValue',{app:'mycore_version',key:'version_groupids_list',value:angular.toJson($scope.groupList)}, function() {
+        OC.AppConfig.postCall('setValue',{app:'mycore_versions',key:'versions_groupids_list',value:angular.toJson($scope.groupList)}, function() {
             groupListElt.removeClass("groupList_changed");
             groupListElt.addClass("groupList_saved");
             groupListElt.removeClass("groupList_saved",2000);
