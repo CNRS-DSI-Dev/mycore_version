@@ -6,12 +6,12 @@ display: none !important;
     clear: both;
 }
 
-#mycore_version #groups {
+#mycore_versions #groups {
     width: 15em;
     float: left;
 }
 
-#mycore_version .angucomplete-dropdown {
+#mycore_versions .angucomplete-dropdown {
     overflow-y: auto;
     max-height: 130px;
     border: 1px solid #ddd;
@@ -20,23 +20,23 @@ display: none !important;
     margin-bottom: 1em;
 }
 
-#mycore_version .angucomplete-row {
+#mycore_versions .angucomplete-row {
     margin-bottom: 5px;
 }
 
-#mycore_version .angucomplete-row:hover {
+#mycore_versions .angucomplete-row:hover {
     background-color: #ccc;
 }
 
-#mycore_version.section #searchGroup .angucomplete-row .angucomplete-title {
+#mycore_versions.section #searchGroup .angucomplete-row .angucomplete-title {
     font-size: 13px;
 }
 
-#mycore_version #groups_value {
+#mycore_versions #groups_value {
     width: 15em;
 }
 
-#mycoreVersionGroupList {
+#mycoreVersionsGroupList {
     margin-left: 18em;
     border: 1px solid #ddd;
     padding: 3px;
@@ -45,19 +45,19 @@ display: none !important;
     font-size: 13px;
 }
 
-#mycore_version .groupItem {
+#mycore_versions .groupItem {
     padding: 1px 5px;
     margin: 0 3px;
     border: 1px solid #ddd;
 }
 
-#mycore_version .groupItem span {
+#mycore_versions .groupItem span {
     cursor: pointer;
 }
 
-#mycoreVersionGroupList.groupList_changed {
+#mycoreVersionsGroupList.groupList_changed {
   background: lightYellow;
 }
-#mycoreVersionGroupList.groupList_saved {
+#mycoreVersionsGroupList.groupList_saved {
   background: lightGreen;
 }

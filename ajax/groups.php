@@ -1,6 +1,6 @@
 <?php
 /**
- * ownCloud - MyCore version
+ * ownCloud - MyCore versions
  *
  * @author Patrick Paysant <ppaysant@linagora.com>
  * @copyright 2014 CNRS DSI
@@ -15,7 +15,7 @@ if (!empty($_GET['act'])) {
         $enabled = 'no';
 
         $appConfig = \OC::$server->getAppConfig();
-        $enabled = $appConfig->getValue('mycore_version', 'version_groups_enabled', 'no');
+        $enabled = $appConfig->getValue('mycore_versions', 'versions_groups_enabled', 'no');
 
         \OCP\JSON::success(array('data' => array('enabled' => $enabled)));
         exit();
@@ -40,11 +40,11 @@ if (!empty($_GET['act'])) {
         $uid = \OCP\User::getUser();
         $isAdmin = $group->inGroup($userManager->get($uid));
 
-        $groupsInfo = new \OC\Group\MetaData(\OCP\User::getUser(), $isAdmin, $groupManager);
+        $groupsInfo = new \OC\Group\MetaData($uid, $isAdmin, $groupManager);
         $groupsInfo->setSorting($groupsInfo::SORT_USERCOUNT);
         list($adminGroup, $groups) = $groupsInfo->get($search);
 
-        \OCP\JSON::success(array('data' => array('groups' => $groups)));
+        \OCP\JSON::success(array('data' => array('groups' => array_unique(array_merge($adminGroup, $groups)))));
         exit();
     }
 

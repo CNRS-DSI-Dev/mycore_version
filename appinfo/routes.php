@@ -12,4 +12,4 @@ function() {
 });
 
 // Register with the capabilities API
-OC_API::register('get', '/cloud/capabilities', array('OCA\MyCoRe_Version\Capabilities', 'getCapabilities'), 'mycore_version', OC_API::USER_AUTH);
+OC_API::register('get', '/cloud/capabilities', array('OCA\MyCoRe_Versions\Capabilities', 'getCapabilities'), 'mycore_versions', OC_API::USER_AUTH);

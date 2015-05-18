@@ -1,11 +1,11 @@
 <?php
-OCP\JSON::checkAppEnabled('mycore_version');
+OCP\JSON::checkAppEnabled('mycore_versions');
 
 $source = $_GET['source'];
 $start = $_GET['start'];
-list ($uid, $filename) = OCA\MyCoRe_Version\Storage::getUidAndFilename($source);
+list ($uid, $filename) = OCA\MyCoRe_Versions\Storage::getUidAndFilename($source);
 $count = 5; //show the newest revisions
-$versions = OCA\MyCoRe_Version\Storage::getVersions($uid, $filename, $source);
+$versions = OCA\MyCoRe_Versions\Storage::getVersions($uid, $filename, $source);
 if( $versions ) {
 
 	$endReached = false;

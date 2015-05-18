@@ -4,7 +4,7 @@ $userGroups = OC_Group::getUserGroups(\OCP\User::getUser());
 
 $mycoreGroups = array();
 $appConfig = \OC::$server->getAppConfig();
-$configGroups = json_decode($appConfig->getValue('mycore_version', 'version_groupids_list', ''));
+$configGroups = json_decode($appConfig->getValue('mycore_versions', 'versions_groupids_list', ''));
 if (is_array($configGroups)) {
     foreach($configGroups as $group) {
         array_push($mycoreGroups, $group->id);
@@ -21,14 +21,14 @@ if (empty($intersect) and !$isAdminUser) {
     return;
 }
 
-\OCP\App::registerAdmin('mycore_version', 'settings-admin');
+\OCP\App::registerAdmin('mycore_versions', 'settings-admin');
 
-//require_once 'mycore_version/versions.php';
-OC::$CLASSPATH['OCA\MyCoRe_Version\Storage'] = 'mycore_version/lib/versions.php';
-OC::$CLASSPATH['OCA\MyCoRe_Version\Hooks'] = 'mycore_version/lib/hooks.php';
-OC::$CLASSPATH['OCA\MyCoRe_Version\Capabilities'] = 'mycore_version/lib/capabilities.php';
+//require_once 'mycore_versions/versions.php';
+OC::$CLASSPATH['OCA\MyCoRe_Versions\Storage'] = 'mycore_versions/lib/versions.php';
+OC::$CLASSPATH['OCA\MyCoRe_Versions\Hooks'] = 'mycore_versions/lib/hooks.php';
+OC::$CLASSPATH['OCA\MyCoRe_Versions\Capabilities'] = 'mycore_versions/lib/capabilities.php';
 
-OCP\Util::addscript('mycore_version', 'versions');
-OCP\Util::addStyle('mycore_version', 'versions');
+OCP\Util::addscript('mycore_versions', 'versions');
+OCP\Util::addStyle('mycore_versions', 'versions');
 
-\OCA\MyCoRe_Version\Hooks::connectHooks();
+\OCA\MyCoRe_Versions\Hooks::connectHooks();

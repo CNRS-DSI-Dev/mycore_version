@@ -40,7 +40,7 @@ class Test_Files_Versioning extends \PHPUnit_Framework_TestCase {
 		// clear share hooks
 		\OC_Hook::clear('OCP\\Share');
 		\OC::registerShareHooks();
-		\OCA\MyCoRe_Version\Hooks::connectHooks();
+		\OCA\MyCoRe_Versions\Hooks::connectHooks();
 		\OCP\Util::connectHook('OC_Filesystem', 'setup', '\OC\Files\Storage\Shared', 'setup');
 
 		// create test user
@@ -384,7 +384,7 @@ class Test_Files_Versioning extends \PHPUnit_Framework_TestCase {
 		$this->rootView->file_put_contents($v2, 'version2');
 
 		// execute copy hook of versions app
-		$versions = \OCA\MyCoRe_Version\Storage::getVersions(self::TEST_VERSIONS_USER, '/subfolder/test.txt');
+		$versions = \OCA\MyCoRe_Versions\Storage::getVersions(self::TEST_VERSIONS_USER, '/subfolder/test.txt');
 
 		$this->assertSame(2, count($versions));
 
@@ -418,7 +418,7 @@ class Test_Files_Versioning extends \PHPUnit_Framework_TestCase {
 }
 
 // extend the original class to make it possible to test protected methods
-class VersionStorageToTest extends \OCA\MyCoRe_Version\Storage {
+class VersionStorageToTest extends \OCA\MyCoRe_Versions\Storage {
 
 	/**
 	 * @param integer $time

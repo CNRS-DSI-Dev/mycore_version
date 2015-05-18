@@ -1,6 +1,6 @@
-# My CoRe - Version
+# My CoRe - Versions
 
-Fork of owncloud 7 app "Version" that allows maintaining older versions of files that are changed.
+Fork of owncloud 7 app "Versions" that allows maintaining older versions of files that are changed.
 
 This fork is absolutely not validated by original authors. Its answers to a specific need by CNRS.
 

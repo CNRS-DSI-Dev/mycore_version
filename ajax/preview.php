@@ -7,7 +7,7 @@
  */
 \OC_Util::checkLoggedIn();
 
-if(!\OC_App::isEnabled('mycore_version')){
+if(!\OC_App::isEnabled('mycore_versions')){
 	exit;
 }
 
@@ -30,7 +30,7 @@ if($maxX === 0 || $maxY === 0) {
 }
 
 try {
-	list($user, $file) = \OCA\MyCoRe_Version\Storage::getUidAndFilename($file);
+	list($user, $file) = \OCA\MyCoRe_Versions\Storage::getUidAndFilename($file);
 	$preview = new \OC\Preview($user, 'files_versions', $file.'.v'.$version);
 	$mimetype = \OC_Helper::getFileNameMimeType($file);
 	$preview->setMimetype($mimetype);

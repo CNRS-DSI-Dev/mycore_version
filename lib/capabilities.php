@@ -6,7 +6,7 @@
  * See the COPYING-README file.
  */
 
-namespace OCA\MyCoRe_Version;
+namespace OCA\MyCoRe_Versions;
 
 class Capabilities {
 
